@@ -22,7 +22,7 @@ const BannerSection = () => {
 };
 
 // data
-const title = "Jordan-Petra";
+const title = "Jordan-Petra1111";
 const image = {
   link: `${BannerImg}`,
   name: "banner-img"
