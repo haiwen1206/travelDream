@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import { BREAKPOINTS } from "../../util";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 const StyledNav = styled.nav`
   width: 100%;
@@ -34,13 +40,14 @@ const StyledButton = styled.a`
 `;
 const HeaderNav = (props) => {
   const { navItems, navBtn } = props;
+
   return (
     <>
       <StyledNav>
         {navItems.map((navItem, index) => {
           return (
-            <StyledNavLink key={"navItem_" + index} href={navItem.link}>
-              {navItem.name}
+            <StyledNavLink onClick={() => window.scrollTo({ behavior: 'smooth', top: navItem.scroll })} key={"navItem_" + index}>
+              <Link to={navItem.link} > {navItem.name}</Link>
             </StyledNavLink>
           );
         })}

@@ -6,24 +6,24 @@ import Container from "../layout/Container";
 import Logo from "../../images/Logo";
 import Nav from "./HeaderNav";
 import { BREAKPOINTS } from "../../util";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 // data
-const logo = {
-  id: "logo",
-  link: "#",
-  type: "header__logo__img",
-  name: ""
-};
 const headerNavItems = [
-  { id: "item1", link: "#", type: "header__nav__item", name: "Intro" },
+  { id: "item1", link: "/AttractionsPage", type: "header__nav__item", name: "Intro", scroll: 400 },
   {
     id: "item2",
-    link: "#",
+    link: "/AttractionsPage",
     type: "header__nav__item",
-    name: "Transport"
+    name: "Transport", scroll: 850
   },
-  { id: "item3", link: "#", type: "header__nav__item", name: "Hotel" },
-  { id: "item4", link: "#", type: "header__nav__item", name: "Food" }
+  { id: "item3", link: "/AttractionsPage", type: "header__nav__item", name: "Hotel", scroll: 1550 },
+  { id: "item4", link: "/AttractionsPage", type: "header__nav__item", name: "Food", scroll: 2000 }
 ];
 const headerBtn = {
   id: "btn",
@@ -97,20 +97,21 @@ const StyledResponsiveIcon = styled.i`
 `;
 
 // main
-const Header = () => {
+const Header = ({ click }) => {
+
   return (
     <StyledHeader>
       <ResponsiveBar />
       <Container>
         <StyledContent>
           <StyledHeaderLogo>
-            <StyledHeaderLogoLink href={logo.link}>
-              <Logo />
+            <StyledHeaderLogoLink>
+              <Link to="/"><Logo /></Link>
             </StyledHeaderLogoLink>
             <StyledResponsiveIcon className="fas fa-bars" />
           </StyledHeaderLogo>
           <StyledMenu>
-            <Nav navItems={headerNavItems} navBtn={headerBtn} />
+            <Nav navItems={headerNavItems} navBtn={headerBtn} click={click} />
           </StyledMenu>
         </StyledContent>
       </Container>
