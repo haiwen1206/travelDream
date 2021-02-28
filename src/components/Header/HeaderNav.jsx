@@ -19,7 +19,7 @@ const StyledNav = styled.nav`
     align-items: flex-start;
   }
 `;
-const StyledNavLink = styled.a`
+const StyledNavLink = styled.div`
   font-family: -apple-system, "Segoe UI";
   font-size: 16px;
   color: #1c274a;

@@ -50,7 +50,7 @@ const StyledHeaderLogo = styled.div`
     width: 100%;
   }
 `;
-const StyledHeaderLogoLink = styled.a`
+const StyledHeaderLogoDiv = styled.div`
   width: 300px;
   height: 50px;
 `;
@@ -105,9 +105,9 @@ const Header = ({ click }) => {
       <Container>
         <StyledContent>
           <StyledHeaderLogo>
-            <StyledHeaderLogoLink>
+            <StyledHeaderLogoDiv>
               <Link to="/"><Logo /></Link>
-            </StyledHeaderLogoLink>
+            </StyledHeaderLogoDiv>
             <StyledResponsiveIcon className="fas fa-bars" />
           </StyledHeaderLogo>
           <StyledMenu>
