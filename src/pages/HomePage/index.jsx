@@ -1,9 +1,12 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, Suspense } from "react";
 import { Canvas, useFrame } from "react-three-fiber";
 import { useSpring, a } from "react-spring/three";
 import styled from "styled-components";
 import HTMLContent from "./HTMLContent"
 import Header from "../../components/Header";
+import { useProgress, Html } from "drei";
+
+
 
 const HomePage = () => {
     const Sphere = () => {
@@ -17,27 +20,31 @@ const HomePage = () => {
             <HTMLContent />
         </a.mesh>);
     }
-
+    function Loader() {
+        const { active, progress, errors, item, loaded, total } = useProgress()
+        return <Html center style={{ color: 'black' }}>{progress} % loaded</Html>
+    }
     return (
         <>
             <Header />
-            <Canvas colorManagement camera={{ position: [-5, 302, 100], fov: 35 }}>
-                <color attach="background" args={['black']} />
-                <ambientLight intensity={0.3} />
-                <directionalLight
-                    castShadow
-                    position={[0, 50, 0]}
-                    intensity={1.5}
-                    shadow-mapSize-width={1024}
-                    shadow-mapSize-height={1024}
-                    shadow-camera-far={50}
-                    shadow-camera-left={-10}
-                    shadow-camera-right={10}
-                    shadow-camera-top={50}
-                    shadow-camera-bottom={-10}
-                />
-                <Sphere />
-            </Canvas></>
+            <Suspense fallback={<Loader />}>
+                <Canvas colorManagement camera={{ position: [-5, 302, 100], fov: 35 }}>
+                    <color attach="background" args={['black']} />
+                    <ambientLight intensity={0.3} />
+                    <directionalLight
+                        castShadow
+                        position={[0, 50, 0]}
+                        intensity={1.5}
+                        shadow-mapSize-width={1024}
+                        shadow-mapSize-height={1024}
+                        shadow-camera-far={50}
+                        shadow-camera-left={-10}
+                        shadow-camera-right={10}
+                        shadow-camera-top={50}
+                        shadow-camera-bottom={-10}
+                    />
+                    <Sphere />
+                </Canvas></Suspense></>
     );
 }
 
